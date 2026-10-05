@@ -186,8 +186,8 @@
         .q-btn-trigger-ia {
             position: absolute !important; top: 14px !important; right: 14px !important; left: auto !important; bottom: auto !important; z-index: 100;
             background: none; border: none; padding: 0 !important; cursor: pointer;
-            width: 80px !important; height: 80px !important;
-            min-width: 0 !important; max-width: 80px !important; max-height: 80px !important;
+            width: 72px !important; height: 72px !important;
+            min-width: 0 !important; max-width: 72px !important; max-height: 72px !important;
             flex: 0 0 auto !important;
             display: flex; align-items: center; justify-content: center;
             filter: drop-shadow(0 3px 10px rgba(0,0,0,0.22));
@@ -196,7 +196,7 @@
         }
         .q-btn-trigger-ia:hover { filter: drop-shadow(0 6px 18px rgba(0,0,0,0.32)); }
         .q-btn-trigger-ia img { width: 100%; height: 100%; object-fit: contain; opacity: 1 !important; }
-        @media (min-width: 768px) { .q-btn-trigger-ia { width: 80px !important; height: 80px !important; } }
+        @media (min-width: 768px) { .q-btn-trigger-ia { width: 72px !important; height: 72px !important; } }
 
         /* ── Inline button ── */
         .q-btn-inline-provador {

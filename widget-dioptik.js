@@ -911,6 +911,14 @@
             fetch('https://n8n.segredosdodrop.com/webhook/pl-provador-buy-click', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ phone: _tp, origin: location.origin, produto: _td }) }).catch(function () {});
         } catch (e) {}
         var src = getProductForm();
+        // DiOptik (05/10/2026): igual ao "Comprar ahora" do tema — vai DIRETO pro checkout só com
+        // este produto (link permanente /cart/VARIANTE:QTD), sem passar nem misturar com o carrinho.
+        try {
+            var _vid = src && (src.querySelector('[name="id"]') || {}).value;
+            if (!_vid) { var _um = location.search.match(/[?&]variant=(\d+)/); _vid = _um && _um[1]; }
+            var _qtd = parseInt((src && (src.querySelector('[name="quantity"]') || {}).value) || '1', 10) || 1;
+            if (_vid && /^\d+$/.test(String(_vid))) { window.location.href = '/cart/' + _vid + ':' + _qtd; return; }
+        } catch (e) {}
         if (src) {
             var clone = document.createElement('form');
             clone.method = 'post';

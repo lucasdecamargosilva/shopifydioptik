@@ -734,7 +734,7 @@
                             <span class="q-field-label">Tu WhatsApp<span class="q-required-mark">*</span></span>
                             <div style="display:flex;align-items:stretch;gap:8px;">
                                 <span style="display:flex;align-items:center;padding:0 12px;border:1px solid var(--c-line);border-radius:8px;background:var(--c-surface);color:var(--c-ink);font-size:14px;white-space:nowrap;">+591</span>
-                                <input type="tel" id="q-phone" class="q-input" placeholder="7XXXXXXX" maxlength="16" inputmode="numeric" autocomplete="tel-national" style="flex:1;min-width:0;">
+                                <input type="tel" id="q-phone" class="q-input" placeholder="7XXXXXXX" maxlength="8" inputmode="numeric" autocomplete="tel-national" style="flex:1;min-width:0;">
                             </div>
                             <div id="q-phone-error" class="q-status-msg">Número de WhatsApp inválido</div>
                             <div id="q-provas-restantes" class="q-provas-msg"></div>
@@ -1892,9 +1892,21 @@
 
 
 
+        // Campo travado no celular da Bolívia: só dígitos, no máximo 8 (o +591 já aparece fixo
+        // ao lado). Se colarem com +591 / 00591, tira o prefixo antes de cortar.
+        function _boClampPhone() {
+            var d = String(phoneInput.value || '').replace(/\D/g, '');
+            if (d.indexOf('00591') === 0) d = d.slice(5);
+            else if (d.length > 8 && d.indexOf('591') === 0) d = d.slice(3);
+            d = d.slice(0, 8);
+            if (phoneInput.value !== d) phoneInput.value = d;
+        }
+        phoneInput.removeAttribute('maxlength');   // o corte e feito no _boClampPhone (colar "+591 7707-1255" cabe)
         phoneInput.addEventListener('input', function () {
+            _boClampPhone();
             checkPhoneStep();   // DiOptik: WhatsApp +591 (8 dígitos)
         });
+        try { _boClampPhone(); } catch (e) {}
         // ── Contador de provas restantes (debounced) ──
         let _provasDebounce;
         async function _checkProvasRestantes() {

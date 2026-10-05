@@ -551,7 +551,7 @@
             width: 100%; max-height: 56vh; background: var(--c-surface);
             overflow: hidden; display: flex; align-items: center; justify-content: center;
         }
-        #q-result-img-col img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+        #q-result-img-col img { width: 100%; height: auto; max-height: 56vh; object-fit: contain; object-position: center; display: block; }   /* foto inteira, sem corte */
 
         #q-result-actions-col {
             display: flex; flex-direction: column; gap: 8px;
@@ -669,8 +669,8 @@
                 border-right: 1px solid var(--c-line); flex-shrink: 0;
             }
             .q-card-ia.is-result #q-result-img-col img {
-                width: 100% !important; height: 100% !important;
-                object-fit: cover !important; object-position: top center !important;
+                width: 100% !important; height: 100% !important; max-height: none !important;
+                object-fit: contain !important; object-position: center !important;
             }
             .q-card-ia.is-result #q-result-actions-col {
                 width: 56% !important; padding: 28px 24px !important;

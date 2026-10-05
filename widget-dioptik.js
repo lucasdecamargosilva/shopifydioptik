@@ -186,8 +186,8 @@
         .q-btn-trigger-ia {
             position: absolute !important; top: 14px !important; right: 14px !important; left: auto !important; bottom: auto !important; z-index: 100;
             background: none; border: none; padding: 0 !important; cursor: pointer;
-            width: 64px !important; height: 64px !important;
-            min-width: 0 !important; max-width: 64px !important; max-height: 64px !important;
+            width: 80px !important; height: 80px !important;
+            min-width: 0 !important; max-width: 80px !important; max-height: 80px !important;
             flex: 0 0 auto !important;
             display: flex; align-items: center; justify-content: center;
             filter: drop-shadow(0 3px 10px rgba(0,0,0,0.22));
@@ -196,7 +196,7 @@
         }
         .q-btn-trigger-ia:hover { filter: drop-shadow(0 6px 18px rgba(0,0,0,0.32)); }
         .q-btn-trigger-ia img { width: 100%; height: 100%; object-fit: contain; opacity: 1 !important; }
-        @media (min-width: 768px) { .q-btn-trigger-ia { width: 64px !important; height: 64px !important; } }
+        @media (min-width: 768px) { .q-btn-trigger-ia { width: 80px !important; height: 80px !important; } }
 
         /* ── Inline button ── */
         .q-btn-inline-provador {
@@ -1239,6 +1239,9 @@
             inlineBtn.style.setProperty('flex', '1 0 100%', 'important');
             var _host = buyBtn.closest('.product-form__quantity-and-btn, .product-form__buttons, product-form, form') || buyBtn.parentNode;
             _host.parentNode.insertBefore(inlineBtn, _host.nextSibling);   // linha propria, abaixo do comprar
+            // DiOptik (Impulse): o form do tema tem margin-bottom 30px e o botao ficava longe do
+            // "Comprar ahora". Compensa pra ficar a 12px, o mesmo respiro entre os botoes do tema.
+            try { var _hmb = parseFloat(getComputedStyle(_host).marginBottom) || 0; inlineBtn.style.setProperty('margin-top', (12 - _hmb) + 'px', 'important'); } catch (e) {}
             try {
                 var _sync = function () {
                     var _bw = buyBtn.getBoundingClientRect().width;

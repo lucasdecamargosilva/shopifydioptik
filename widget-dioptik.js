@@ -1083,7 +1083,7 @@
         // so as fotos dentro dele. Ancorar o selo AQUI o mantem no canto mesmo quando a
         // troca de cor faz o carrossel deslizar pra foto da variacao nova.
         function _stableFrame() {
-            return document.querySelector('slider-component.product-media-slider, slider-component, .product-media-slider');
+            return document.querySelector('.product__main-photos, slider-component.product-media-slider, slider-component, .product-media-slider');   // DiOptik (tema Impulse): .product__main-photos
         }
 
         function tryPlaceTriggerBtn() {

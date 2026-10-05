@@ -1091,7 +1091,8 @@
             var frame = _stableFrame();
             if (frame && frame.offsetWidth > 180) {
                 if (window.getComputedStyle(frame).position === 'static') frame.style.position = 'relative';
-                if (window.getComputedStyle(frame).overflow === 'hidden') frame.style.overflow = 'visible';
+                // NAO mexer no overflow da galeria: no tema Impulse (Flickity) isso quebrava o carrossel
+                // (fotos com 4.600px e o lazyload nunca carregava). O selo fica dentro do quadro.
                 frame.appendChild(openBtn);
                 return true;
             }
@@ -1132,7 +1133,6 @@
             var _mc = document.querySelector('.product__media-item, .product__media-wrapper, .product__media, .product-gallery__media, [class*="product__media"], .product-single__media');
             if (_mc && _mc.offsetWidth > 180 && !_mc.querySelector('#q-open-ia')) {
                 if (window.getComputedStyle(_mc).position === 'static') _mc.style.position = 'relative';
-                if (window.getComputedStyle(_mc).overflow === 'hidden') _mc.style.overflow = 'visible';
                 _mc.appendChild(openBtn);
                 return true;
             }
